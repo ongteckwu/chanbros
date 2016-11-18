@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    android:padding="3dp"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linear_layout1">
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/your_budget_card"
+            android:layout_width="230dp"
+            android:layout_height="@dimen/card_height"
+            android:elevation="10dp"
+            app:cardBackgroundColor="@color/colorPrimaryBlue"
+            android:layout_margin="1dp"
+            android:layout_marginRight="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="YOUR BUDGET"
+                    android:gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:textColor="@color/fontColorBlandWhite"
+                    android:textStyle="normal"
+                    android:fontFamily="Roboto" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="40sp"
+                        android:text="SGD"
+                        android:textColor="@color/fontColorBlandWhite"
+                        android:id="@+id/textView" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/colorPrimaryYellow"
+                        android:ems="10"
+                        android:id="@+id/editText2"
+                        android:theme="@style/MyEditText" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/path_find_card"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/card_height"
+            android:elevation="10dp"
+            app:cardBackgroundColor="@color/colorPrimaryYellow"
+            android:layout_margin="1dp"
+            android:layout_weight="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PATHFIND"
+                    android:gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:textColor="@color/fontColorBlandWhite"
+                    android:textStyle="normal"
+                    android:fontFamily="Roboto" />
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/radio_group">
+                    <RadioButton android:id="@+id/radio_fast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FAST"
+                        android:onClick="onRadioButtonClicked"/>
+                    <RadioButton android:id="@+id/radio_slow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SLOW"
+                        android:onClick="onRadioButtonClicked"/>
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/linear_layout1"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/ic_my_location_black_24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="SELECT DESTINATIONS"
+            android:id="@+id/textView2"
+            android:layout_weight="10"
+            android:textAlignment="textStart"
+            android:textColor="@color/fontColorWhite"
+            android:textSize="26sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.26">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GET GOING"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal" />
+    </ScrollView>
+
+</LinearLayout>
