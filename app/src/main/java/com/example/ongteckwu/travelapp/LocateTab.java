@@ -26,7 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 //Our class extending fragment
-public class LocateTab extends Fragment implements OnMapReadyCallback{
+public class LocateTab extends Fragment implements OnMapReadyCallback {
 
     private Button enter;
     private RadioGroup rgrp;
