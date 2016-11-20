@@ -10,7 +10,6 @@ import android.content.Context;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -25,9 +24,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 //Our class extending fragment
 public class LocateTab extends Fragment implements OnMapReadyCallback{
@@ -55,8 +51,6 @@ public class LocateTab extends Fragment implements OnMapReadyCallback{
         return inflater.inflate(R.layout.locate_tab, container, false);
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,19 +62,19 @@ public class LocateTab extends Fragment implements OnMapReadyCallback{
         rsat = (RadioButton) getView().findViewById(R.id.sat_view);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        enter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v == enter) {
-                    InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    mgr.hideSoftInputFromWindow(result_bar.getWindowToken(), 0);
-                    input = search_bar.getText().toString();
-                    result = compare(dictionary, input);
-                    result_bar.setText(result);
-                }
-            }
-        });
+//
+//        enter.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (v == enter) {
+//                    InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    mgr.hideSoftInputFromWindow(result_bar.getWindowToken(), 0);
+//                    input = search_bar.getText().toString();
+//                    result = compare(dictionary, input);
+//                    result_bar.setText(result);
+//                }
+//            }
+//        });
         rmap.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if (v == rmap){
