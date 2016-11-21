@@ -13,11 +13,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class PaulActivity extends AppCompatActivity {
 
@@ -89,55 +93,53 @@ public class PaulActivity extends AppCompatActivity {
     /**
      * Adding few albums for testing
      */
+    private int getIndex(String text) {
+        if (text.equals("bus")) {
+            return 0;
+        }
+        else if (text.equals("taxi")) {
+            return 1;
+        }
+        else if (text.equals("walk")) {
+            return 2;
+        }
+        return 2;
+    }
+
     private void prepareAlbums() {
         int[] icons = new int[]{
                 R.drawable.bus,
                 R.drawable.car,
                 R.drawable.pedestrianwalking
         };
+
+        Map<String, double[]> data = MapData.generateCostTimeMap();
+
+        String[][] result = (String[][]) getIntent().getSerializableExtra("RESULT");
+
+        TextView paulTV = (TextView) findViewById(R.id.paulTextView);
+
 //        Album(String travelRoute, String travelCost, String travelTime, int travelIcon)
-        Album a = new Album("Sentosa to Marina Bay Sands","$0.24","1hr 20mins",icons[0]);
-        albumList.add(a);
+        String route;
+        String fromToTo;
+        String transport;
+        Album a;
+        int index;
 
-        a = new Album("Marina Bay Sands to teck wu","$0.24","1hr 20mins",icons[1]);
-        albumList.add(a);
+        double[] costsAndTimeForTrip;
+        for (int i = 0; i < result[0].length; i++) {
+            route = result[0][i];
+            transport = result[1][i];
+            index = getIndex(transport);
+            costsAndTimeForTrip = data.get(route);
+            fromToTo = MapData.alphaToLocMap.get(route.charAt(0)) + " to " + MapData.alphaToLocMap.get(route.charAt(1));
+            a = new Album(fromToTo, "$" + costsAndTimeForTrip[index * 2], costsAndTimeForTrip[index * 2 + 1] + "min", icons[index]);
+            albumList.add(a);
+        }
 
-        a = new Album("teck wu to zhe yu","$0.24","1hr 20mins",icons[2]);
-        albumList.add(a);
+        String paulText = String.format(Locale.US, "Cost: $%s Total Time: %smins", result[2][0], result[2][1]);
 
-        a = new Album("zheyu to china","$0.24","1hr 20mins",icons[2]);
-        albumList.add(a);
-//        public Album(String name, int numOfSongs, int thumbnail)
-//        Album a = new Album("True Romance", 13, covers[0]);
-//        albumList.add(a);
-//
-//        a = new Album("Xscpae", 8, covers[1]);
-//        albumList.add(a);
-//
-//        a = new Album("Maroon 5", 11, covers[2]);
-//        albumList.add(a);
-//
-//        a = new Album("Born to Die", 12, covers[3]);
-//        albumList.add(a);
-//
-//        a = new Album("Honeymoon", 14, covers[4]);
-//        albumList.add(a);
-//
-//        a = new Album("I Need a Doctor", 1, covers[5]);
-//        albumList.add(a);
-//
-//        a = new Album("Loud", 11, covers[6]);
-//        albumList.add(a);
-//
-//        a = new Album("Legend", 14, covers[7]);
-//        albumList.add(a);
-//
-//        a = new Album("Hello", 11, covers[8]);
-//        albumList.add(a);
-//
-//        a = new Album("Greatest Hits", 17, covers[9]);
-//        albumList.add(a);
-
+        paulTV.setText(paulText);
         adapter.notifyDataSetChanged();
     }
 

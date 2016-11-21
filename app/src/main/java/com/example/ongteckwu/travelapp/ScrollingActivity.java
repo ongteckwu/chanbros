@@ -8,6 +8,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ScrollingActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
@@ -47,6 +50,8 @@ public class ScrollingActivity extends AppCompatActivity implements TabLayout.On
         viewPager.setAdapter(adapter);
 
         tabLayout.addOnTabSelectedListener(this);
+
+
     }
 
 
@@ -134,7 +139,7 @@ public class ScrollingActivity extends AppCompatActivity implements TabLayout.On
             RadioButton fastSolver=(RadioButton) findViewById(R.id.radio_fast);
 
             String[][] result;
-            if (!fastSolver.isChecked() && loplaces.size() >= 6) { //keeping a threshhold for 6 places
+            if (!fastSolver.isChecked() && loplaces.size() >= 6) { //keeping a threshold for 6 places
                 Toast.makeText(ScrollingActivity.this, "Try again with fast mode", Toast.LENGTH_SHORT).show();
             } else {
                 if (fastSolver.isChecked()) { //lousy algo
@@ -147,7 +152,9 @@ public class ScrollingActivity extends AppCompatActivity implements TabLayout.On
                 }
 
                 //please replace this GodWu
-                Toast.makeText(ScrollingActivity.this, MyClass.convertResultToString(result),Toast.LENGTH_LONG).show();
+//                Toast.makeText(ScrollingActivity.this, MyClass.convertResultToString(result),Toast.LENGTH_LONG).show();
+                Intent newIntent = new Intent(this, PaulActivity.class).putExtra("RESULT", result);
+                startActivity(newIntent);
             }
         } catch (NumberFormatException e) {
             Toast.makeText(ScrollingActivity.this, "Please enter your budget!", Toast.LENGTH_SHORT).show();

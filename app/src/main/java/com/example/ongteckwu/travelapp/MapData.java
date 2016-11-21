@@ -5,14 +5,30 @@ package com.example.ongteckwu.travelapp;
  */
 
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class MapData {
-
+    public static final Map<Character, String> alphaToLocMap;
+    public static HashMap<String, double[]> data = new HashMap<> ();
+    static {
+        Map<Character, String> aMap = new HashMap<>();
+        aMap.put('a', "SUTD");
+        aMap.put('b', "Singapore Flyer");
+        aMap.put('c', "Vivo City");
+        aMap.put('d', "Resorts World Sentosa");
+        aMap.put('e', "Buddha Tooth Relic Temple");
+        aMap.put('f', "Singapore Zoo");
+        aMap.put('g', "Singapore Botanic Gardens");
+        aMap.put('h', "Peranakan Museum");
+        aMap.put('i', "ION Orchard");
+        alphaToLocMap = Collections.unmodifiableMap(aMap);
+    }
     // create a hashmap of the time and cost of all transport modes of all possible routes
     public static HashMap<String, double[]> generateCostTimeMap() {
-        HashMap<String, double[]> data = new HashMap<String, double[]> ();
+        if (!data.isEmpty()) return data;
 
         /**
          * FOR REFERENCE:
