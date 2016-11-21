@@ -172,10 +172,9 @@ public class ScrollingActivity extends AppCompatActivity implements TabLayout.On
                     result = MyClass.result(possiblePermutations, budget);
                 }
 
-                //please replace this GodWu
-//                Toast.makeText(ScrollingActivity.this, MyClass.convertResultToString(result),Toast.LENGTH_LONG).show();
-                Intent newIntent = new Intent(this, PaulActivity.class).putExtra("RESULT", result);
-                startActivity(newIntent);
+                Toast.makeText(ScrollingActivity.this, MyClass.convertResultToString(result),Toast.LENGTH_LONG).show();
+//                Intent newIntent = new Intent(this, PaulActivity.class).putExtra("RESULT", result);
+//                startActivity(newIntent);
             }
         } catch (NumberFormatException e) {
             Toast.makeText(ScrollingActivity.this, "Please enter your budget!", Toast.LENGTH_SHORT).show();
