@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,6 +20,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.arlib.floatingsearchview.FloatingSearchView;
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -29,8 +33,13 @@ public class ScrollingActivity extends AppCompatActivity implements TabLayout.On
     private TabLayout tabLayout;
 
     //This is our viewPager
-    private ViewPager viewPager;
+    public ViewPager viewPager;
 
+    private FloatingSearchView searchView;
+
+    public ViewPager getViewPager() {
+        return viewPager;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +60,19 @@ public class ScrollingActivity extends AppCompatActivity implements TabLayout.On
 
         tabLayout.addOnTabSelectedListener(this);
 
-
+//        searchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
+//
+//        searchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
+//            @Override
+//            public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
+//
+//            }
+//
+//            @Override
+//            public void onSearchAction(String query) {
+//                viewPager.setCurrentItem(1);
+//            }
+//        });
     }
 
 

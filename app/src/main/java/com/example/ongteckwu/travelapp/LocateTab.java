@@ -4,19 +4,21 @@ package com.example.ongteckwu.travelapp;
  * Created by ongteckwu on 18/11/16.
  */
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.content.Context;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arlib.floatingsearchview.FloatingSearchView;
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,11 +30,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 //Our class extending fragment
 public class LocateTab extends Fragment implements OnMapReadyCallback {
 
-    private Button enter;
-    private RadioGroup rgrp;
+    private FloatingSearchView searchView;
     private RadioButton rmap;
     private RadioButton rsat;
-    private EditText search_bar;
     private TextView result_bar;
     private String input;
     public String result;
@@ -45,36 +45,34 @@ public class LocateTab extends Fragment implements OnMapReadyCallback {
     //Overriden method onCreateView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-        return inflater.inflate(R.layout.locate_tab, container, false);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        enter = (Button) getView().findViewById(R.id.enter);
-        search_bar = (EditText) getView().findViewById(R.id.search_bar);
-        result_bar = (TextView) getView().findViewById(R.id.results);
-        rgrp = (RadioGroup) getView().findViewById(R.id.radio_grp);
-        rmap = (RadioButton) getView().findViewById(R.id.map_view);
-        rsat = (RadioButton) getView().findViewById(R.id.sat_view);
+        View inflatedView = inflater.inflate(R.layout.locate_tab, container, false);
+        result_bar = (TextView) inflatedView.findViewById(R.id.results);
+        rmap = (RadioButton) inflatedView.findViewById(R.id.map_view);
+        rsat = (RadioButton) inflatedView.findViewById(R.id.sat_view);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-//
-//        enter.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (v == enter) {
-//                    InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    mgr.hideSoftInputFromWindow(result_bar.getWindowToken(), 0);
-//                    input = search_bar.getText().toString();
-//                    result = compare(dictionary, input);
-//                    result_bar.setText(result);
-//                }
-//            }
-//        });
+
+        searchView = (FloatingSearchView) getActivity().findViewById(R.id.floating_search_view);
+        searchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
+            @Override
+            public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
+
+            }
+
+            @Override
+            public void onSearchAction(String query) {
+                // change tab
+                TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                tabhost.getTabAt(1).select();
+                // change fragment
+                ViewPager vp = ((ScrollingActivity) getActivity()).getViewPager();
+                vp.setCurrentItem(1);
+                input = searchView.getQuery();
+                result = compare(dictionary, input);
+                result_bar.setText(result);
+            }
+        });
+
         rmap.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if (v == rmap){
@@ -89,6 +87,15 @@ public class LocateTab extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
+
+        //Returning the layout file after inflating
+        //Change R.layout.tab1 in you classes
+        return inflatedView;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
 
