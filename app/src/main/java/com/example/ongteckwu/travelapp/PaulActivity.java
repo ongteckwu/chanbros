@@ -91,7 +91,7 @@ public class PaulActivity extends AppCompatActivity {
             albumList.add(a);
         }
 
-        String paulText = String.format(Locale.US, "Cost: $%s Total Time: %smins", result[2][0], result[2][1]);
+        String paulText = String.format(Locale.US, "Cost: $%.2f Total Time: %smins", Double.parseDouble(result[2][0]), result[2][1]);
 
         paulTV.setText(paulText);
         adapter.notifyDataSetChanged();

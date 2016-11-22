@@ -77,11 +77,11 @@ public class MapData {
 
         //SUTD
         double[] listAB = {1.61, 47, 15.48, 20, 0, 173};
-        double[] listAC = {1.88, 52, 20.32, 26, 233};
+        double[] listAC = {1.88, 52, 20.32, 26, 0, 233};
         double[] listAD = {1.88, 60, 24.42, 32, 0, 248};
         double[] listAE = {1.77, 52, 17.90, 23, 0, 204};
         double[] listAF = {1.93, 96, 26.92, 34, 0, 318};
-        double[] listAG = {1.76, 73, 18.34, 25, 206};
+        double[] listAG = {1.76, 73, 18.34, 25, 0, 206};
         double[] listAH = {1.54, 51, 17.90, 24, 0, 204};
         double[] listAI = {1.62, 46, 17.68, 24, 0, 199};
         double[] listAJ = {1.69, 49, 15.70, 20, 0, 175};
@@ -89,7 +89,7 @@ public class MapData {
         double[] listAL = {1.50, 43, 16.58, 22, 0, 186};
         double[] listAM = {1.58, 60, 16.80, 22, 0, 188};
         double[] listAN = {1.96, 81, 26.48, 32, 0, 312};
-        double[] listAO = {1.54, 47,15.92, 22, 0, 176};
+        double[] listAO = {1.54, 47,15.92, 22,  0, 176};
         double[] listAP = {1.93, 76, 26.70, 31, 0, 315};
         double[] listAQ = {1.88, 61, 24.20, 31, 0, 246};
         double[] listAR = {1.73, 79, 17.24, 23, 0, 194};
@@ -116,7 +116,7 @@ public class MapData {
 
         //Vivocity
 //        double[] listCA = {1.18, 24, 8.30, 12, 0, 69};
-        double[] listCA = {1.88, 52, 20.32, 26, 233};
+        double[] listCA = {1.88, 52, 20.32, 26, 0, 233};
         double[] listCB = {1.26, 29, 7.96, 14, 0, 81};
         double[] listCD = {2.00, 10, 4.54, 9, 0, 12};
         double[] listCE = {0.98, 18, 6.42, 11, 0, 47};
@@ -196,7 +196,7 @@ public class MapData {
 
         //Singapore Botanic Gardens
 //        double[] listGA = {1.38, 43, 10.62, 15, 0, 97};
-        double[] listGA = {1.76, 73, 18.34, 25, 206};
+        double[] listGA = {1.76, 73, 18.34, 25, 0, 206};
         double[] listGB = {1.18, 43, 9.53, 14, 0, 92};
         double[] listGC = {1.66, 29, 12.28, 17, 0, 107};
         double[] listGD = {3.66, 48, 14.47, 21, 0, 132};
